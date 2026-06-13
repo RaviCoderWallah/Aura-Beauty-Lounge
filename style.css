@@ -833,8 +833,9 @@ h6 {
 }
 
 .testimonials-swiper {
-  padding-bottom: 64px !important;
+  padding-bottom: 80px !important;
   padding-inline: 2px;
+  position: relative;
 }
 
 .testimonial-card {
@@ -915,15 +916,21 @@ h6 {
   color: var(--color-rose) !important;
   box-shadow: var(--shadow-sm);
   top: auto !important;
-  bottom: 0 !important;
+  bottom: 16px !important;
   transition: var(--transition) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .swiper-button-prev {
-  left: calc(50% - 62px) !important;
+  left: calc(50% - 70px) !important;
+  right: auto !important;
 }
+
 .swiper-button-next {
-  right: calc(50% - 62px) !important;
+  right: calc(50% - 70px) !important;
   left: auto !important;
 }
 
@@ -932,17 +939,23 @@ h6 {
   background: var(--color-rose) !important;
   color: #fff !important;
   border-color: var(--color-rose) !important;
-  transform: scale(1.05);
+  transform: scale(1.08) !important;
 }
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   font-weight: 700 !important;
 }
 
+.swiper-button-prev:disabled,
+.swiper-button-next:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
 .swiper-pagination {
-  bottom: 8px !important;
+  bottom: -8px !important;
 }
 
 .swiper-pagination-bullet {
@@ -1506,7 +1519,7 @@ h6 {
     right: -350px;
     bottom: 0;
     left: auto;
-    width: 320px;
+    width: 50%;
     height: calc(100vh - 76px);
     background: #ffffff;
     padding: 0;
@@ -1562,8 +1575,8 @@ h6 {
     right: -350px;
     top: 90px;
     margin-top: 336px;
-    width: 280px;
-    padding: 12px 20px;
+    /* width: 280px; */
+    padding: 12px 30px;
     font-size: 0.95rem;
     font-weight: 600;
     border-radius: var(--radius-full);
@@ -1617,6 +1630,26 @@ h6 {
 
   .gallery-item {
     height: 220px;
+  }
+
+  /* Testimonials - Tablet */
+  .testimonials-swiper {
+    padding-bottom: 90px !important;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 48px !important;
+    height: 48px !important;
+    bottom: 20px !important;
+  }
+
+  .swiper-button-prev {
+    left: calc(50% - 65px) !important;
+  }
+
+  .swiper-button-next {
+    right: calc(50% - 65px) !important;
   }
 
   /* Contact */
@@ -1701,6 +1734,34 @@ h6 {
   /* Testimonials */
   .testimonial-card {
     padding: 28px 24px;
+  }
+
+  .testimonials-swiper {
+    padding-bottom: 75px !important;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 42px !important;
+    height: 42px !important;
+    bottom: 10px !important;
+  }
+
+  .swiper-button-prev {
+    left: calc(50% - 60px) !important;
+  }
+
+  .swiper-button-next {
+    right: calc(50% - 60px) !important;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 1rem !important;
+  }
+
+  .swiper-pagination {
+    bottom: -20px !important;
   }
 
   /* Contact Form */
