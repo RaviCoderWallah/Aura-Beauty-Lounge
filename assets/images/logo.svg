@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <!-- Floral ornament top -->
+  <circle cx="110" cy="7" r="3.2" fill="#C96B8A" opacity="0.85"/>
+  <circle cx="102" cy="13" r="2.2" fill="#8B1A4A" opacity="0.5"/>
+  <circle cx="118" cy="13" r="2.2" fill="#8B1A4A" opacity="0.5"/>
+  <circle cx="110" cy="3" r="1.8" fill="#C4924E" opacity="0.7"/>
+  
+  <!-- Decorative lines -->
+  <line x1="18" y1="35" x2="78" y2="35" stroke="#DDB8C4" stroke-width="0.8"/>
+  <line x1="142" y1="35" x2="202" y2="35" stroke="#DDB8C4" stroke-width="0.8"/>
+  <circle cx="90" cy="35" r="2" fill="#C96B8A" opacity="0.6"/>
+  <circle cx="130" cy="35" r="2" fill="#C96B8A" opacity="0.6"/>
+
+  <!-- AURA text -->
+  <text x="110" y="41"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="21"
+    font-weight="700"
+    letter-spacing="9"
+    fill="#1C1917">AURA</text>
+
+  <!-- Thin divider -->
+  <line x1="42" y1="46" x2="178" y2="46" stroke="#C96B8A" stroke-width="0.5" opacity="0.45"/>
+
+  <!-- BEAUTY LOUNGE subtext -->
+  <text x="110" y="57"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="8"
+    letter-spacing="5"
+    fill="#8B1A4A">BEAUTY LOUNGE</text>
+</svg>
