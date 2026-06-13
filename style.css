@@ -274,6 +274,7 @@ h6 {
   align-items: center;
   gap: 4px;
   margin-left: auto;
+  list-style: none;
 }
 
 .nav-link {
@@ -1494,45 +1495,75 @@ h6 {
   }
 
   /* Mobile Nav */
-  .nav-menu,
   .nav-cta {
     display: none;
   }
 
-  .nav-menu.open {
-    display: flex;
-    flex-direction: column;
+  .nav-menu {
+    /* Hide menu off-screen by default */
     position: fixed;
     top: 76px;
-    left: 0;
-    right: 0;
+    right: -350px;
     bottom: 0;
-    background: rgba(254, 252, 251, 0.98);
-    backdrop-filter: blur(20px);
-    padding: 24px;
-    gap: 6px;
+    left: auto;
+    width: 320px;
+    height: calc(100vh - 76px);
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    gap: 0;
     z-index: 999;
     overflow-y: auto;
-    animation: slideDown 0.3s var(--ease);
+    overflow-x: hidden;
+    flex-direction: column;
+    align-items: stretch;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
+    display: flex;
   }
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-12px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Show menu when open class is added */
+  .nav-menu.open {
+    right: 0;
   }
 
-  .nav-menu.open .nav-link {
-    padding: 14px 18px;
-    font-size: 1.05rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--color-border);
-    background: var(--color-bg-card);
+  .nav-menu li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .nav-menu .nav-link {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    transition: all 0.25s ease;
+  }
+
+  .nav-menu .nav-link:hover,
+  .nav-menu .nav-link:active {
+    background: var(--color-rose-pale);
+    color: var(--color-rose-dark);
+    padding-left: 24px;
+    border-bottom-color: var(--color-rose-light);
+  }
+
+  /* Show Book Now button in mobile menu */
+  .nav-cta.open {
+    display: block !important;
+    width: calc(100% - 40px);
+    margin: 24px 20px;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 0.9rem;
   }
 
   .nav-toggle {

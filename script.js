@@ -11,40 +11,107 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =================== MOBILE NAVIGATION =================== */
   const navToggle = document.getElementById('nav-toggle');
   const navMenu   = document.getElementById('nav-menu');
+  const navCTA    = document.getElementById('nav-book-btn');
+  let navOverlay  = null;
 
   if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
+    // Create overlay element
+    function createOverlay() {
+      if (!navOverlay) {
+        navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        navOverlay.setAttribute('aria-hidden', 'true');
+        navOverlay.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.4);
+          z-index: 998;
+          opacity: 0;
+          transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          pointer-events: none;
+        `;
+        document.body.appendChild(navOverlay);
+      }
+      return navOverlay;
+    }
+
+    // Toggle menu on hamburger click
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = navMenu.classList.toggle('open');
       navToggle.classList.toggle('active');
       navToggle.setAttribute('aria-expanded', String(isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      
+      // Toggle Book Now button in sidebar
+      if (navCTA) {
+        navCTA.classList.toggle('open', isOpen);
+      }
+      
+      const overlay = createOverlay();
+      if (isOpen) {
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+      }
     });
 
     // Close menu on link click
     navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', closeNav);
+      link.addEventListener('click', () => {
+        closeNav();
+      });
     });
 
-    // Close menu on outside click
-    document.addEventListener('click', (e) => {
-      if (navMenu.classList.contains('open') &&
-          !navMenu.contains(e.target) &&
-          !navToggle.contains(e.target)) {
+    // Close on Book Now button click
+    if (navCTA) {
+      navCTA.addEventListener('click', () => {
         closeNav();
+      });
+    }
+
+    // Close menu on overlay click
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open')) {
+        const isClickOnOverlay = navOverlay && e.target === navOverlay;
+        const isClickOutside = !navMenu.contains(e.target) && !navToggle.contains(e.target);
+        
+        if (isClickOnOverlay || isClickOutside) {
+          closeNav();
+        }
       }
     });
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navMenu.classList.contains('open')) closeNav();
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeNav();
+      }
     });
   }
 
   function closeNav() {
-    navMenu.classList.remove('open');
-    navToggle.classList.remove('active');
-    navToggle.setAttribute('aria-expanded', 'false');
+    if (navMenu) {
+      navMenu.classList.remove('open');
+    }
+    if (navToggle) {
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    if (navCTA) {
+      navCTA.classList.remove('open');
+    }
     document.body.style.overflow = '';
+    if (navOverlay) {
+      navOverlay.style.opacity = '0';
+      navOverlay.style.pointerEvents = 'none';
+    }
   }
 
 
