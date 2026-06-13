@@ -1556,14 +1556,27 @@ h6 {
     border-bottom-color: var(--color-rose-light);
   }
 
-  /* Show Book Now button in mobile menu */
-  .nav-cta.open {
-    display: block !important;
-    width: calc(100% - 40px);
-    margin: 24px 20px;
-    padding: 12px 24px;
+  /* Show Book Now button in mobile menu below nav links */
+  .nav-cta {
+    position: fixed;
+    right: -350px;
+    top: 90px;
+    margin-top: 336px;
+    width: 280px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    z-index: 999;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
-    font-size: 0.9rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-cta.open {
+    right: 20px;
   }
 
   .nav-toggle {
